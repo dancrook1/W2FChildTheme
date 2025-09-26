@@ -153,40 +153,33 @@ function enqueue_composite_scripts() {
 
 
 
-/* function enqueue_select2_for_composite_products() {
-    // Check if we're on a product page with composite products
-    if ( is_product() ) {
-        global $post;
-        $product = wc_get_product( $post->ID );
+// Enqueue Select2 for composite products - works with off-canvas elements
+function enqueue_select2_for_composite_products() {
+    // Check if WooCommerce is active
+    if ( class_exists( 'WooCommerce' ) ) {
+        // WooCommerce already includes Select2, so ensure it's loaded globally
+        wp_enqueue_script( 'select2' );
+        wp_enqueue_style( 'select2', WC()->plugin_url() . '/assets/css/select2.css' );
 
-        if ( is_a( $product, 'WC_Product' ) && $product->is_type( 'composite' ) ) {
-            // WooCommerce already includes Select2, so ensure it's loaded
-            wp_enqueue_script( 'select2' );
-            wp_enqueue_style( 'select2', WC()->plugin_url() . '/assets/css/select2.css' );
+        // Enqueue custom composite select2 initialization script globally
+        wp_enqueue_script(
+            'composite-select2-init',
+            get_stylesheet_directory_uri() . '/assets/js/composite-select2-init.js',
+            array( 'jquery', 'select2' ),
+            filemtime( get_stylesheet_directory() . '/assets/js/composite-select2-init.js' ),
+            true
+        );
 
-            // Enqueue your custom composite select2 initialization script
-            wp_enqueue_script( 'composite-select2-init', get_stylesheet_directory_uri() . '/assets/js/composite-select2-init.js', array( 'jquery', 'select2' ), '1.0', true );
-
-            // Localize product description to JS for your script
-            $description = $product->get_short_description();
-            
-            wp_localize_script(
-                'composite-select2-init',
-                'myProductData',
-                array(
-                    'description' => $description,
-                )
-            );
-        }
+        // Enqueue custom Select2 styles globally
         wp_enqueue_style(
-        'composite-select2',
-        get_stylesheet_directory_uri() . '/assets/css/composite-select2.css',
-        [],
-        filemtime( get_stylesheet_directory() . '/assets/css/composite-select2.css' )
-    );
+            'composite-select2',
+            get_stylesheet_directory_uri() . '/assets/css/composite-select2.css',
+            array( 'select2' ),
+            filemtime( get_stylesheet_directory() . '/assets/css/composite-select2.css' )
+        );
     }
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_select2_for_composite_products' ); */
+add_action( 'wp_enqueue_scripts', 'enqueue_select2_for_composite_products' );
 
 // Enqueue accordion scripts and styles for composite components
 add_action( 'wp_enqueue_scripts', 'enqueue_composite_accordion_scripts' );

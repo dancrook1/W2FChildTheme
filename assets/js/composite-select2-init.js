@@ -1,16 +1,17 @@
 jQuery(function($) {
-    $(document).on('wc-composite-component-loaded', function(e, composite, component) {
-    setTimeout(function () {
+    // Initialize Select2 for composite components
+    function initializeSelect2() {
         $('.component_options_select').each(function () {
             var $select = $(this);
 
+            // Skip if already initialized
             if ($select.hasClass('select2-hidden-accessible')) {
-                $select.select2('destroy');
+                return;
             }
 
             $select.select2({
                 width: '100%',
-                //minimumResultsForSearch: Infinity,
+                dropdownParent: $select.closest('.component_options_select_wrapper'),
                 templateResult: formatOption,
                 templateSelection: formatSelection,
                 escapeMarkup: function (markup) {
@@ -18,8 +19,48 @@ jQuery(function($) {
                 }
             });
         });
-    }, 150);
-});
+    }
+
+    // Initialize on document ready
+    initializeSelect2();
+
+    // Re-initialize when composite components are loaded
+    $(document).on('wc-composite-component-loaded', function(e, composite, component) {
+        setTimeout(function () {
+            initializeSelect2();
+        }, 150);
+    });
+
+    // Initialize when content is dynamically loaded (for off-canvas elements)
+    $(document).on('DOMNodeInserted', function(e) {
+        if ($(e.target).find('.component_options_select').length > 0) {
+            setTimeout(function() {
+                initializeSelect2();
+            }, 100);
+        }
+    });
+
+    // Modern browsers - using MutationObserver for better performance
+    if (typeof MutationObserver !== 'undefined') {
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList') {
+                    $(mutation.addedNodes).each(function() {
+                        if ($(this).is('.component_options_select') || $(this).find('.component_options_select').length > 0) {
+                            setTimeout(function() {
+                                initializeSelect2();
+                            }, 100);
+                        }
+                    });
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
 
     
     function formatOption(option) {
