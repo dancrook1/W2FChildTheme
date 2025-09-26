@@ -114,35 +114,9 @@
   right: 10px;
 }
 
-/* Match dropdown styling with thumbnail styling for consistency */
-.component_options_select_wrapper {
-    border: 1px solid #ededed;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    background: #fff;
-}
-
-/* Style dropdown components to match thumbnail components */
-.composite_component:not(.options-style-thumbnails) .component_selections {
-    border: 1px solid #ededed;
-    border-radius: 8px;
-    padding: 20px;
-    background: #fff;
-}
-
-/* Ensure select2 container fits properly within styled wrapper */
+/* Ensure select2 container fits properly within wrapper */
 .component_options_select_wrapper .select2-container {
     width: 100% !important;
-}
-
-/* Match the styling of thumbnail cards for dropdown selections */
-.composite_component:not(.options-style-thumbnails) .component_content {
-    border: 1px solid #ededed;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    background: #fff;
 }
 
 /* Selected option styling to match thumbnail selected state */
