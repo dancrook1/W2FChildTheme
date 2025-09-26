@@ -72,12 +72,12 @@
 }
 
 .composite_component.options-style-thumbnails .info-button:hover {
-    color: #007cba;
-    background-color: rgba(0, 124, 186, 0.1);
+    color: #f5891f;
+    background-color: rgba(245, 137, 31, 0.1);
 }
 
 .composite_component.options-style-thumbnails .info-button:focus {
-    outline: 2px solid #005a8b;
+    outline: 2px solid #f5891f;
     outline-offset: 1px;
 }
 
