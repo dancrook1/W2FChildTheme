@@ -31,9 +31,14 @@
     cursor: not-allowed;
 }
 
+/* Responsive Design */
 @media only screen and (min-width: 768px) {
     .component_option_thumbnails.columns-2 ul.component_option_thumbnails_container li.component_option_thumbnail_container {
         margin: 0 1.5% 1.618em 0 !important;
+    }
+
+    .component_option_thumbnails.columns-2 .thumbnail_description .title {
+        font-size: 1.25em !important;
     }
 }
 .thumbnail_description {
@@ -48,11 +53,6 @@
 .component_option_thumbnails.columns-5 .component_option_thumbnail .thumbnail_description .title {
     font-size: 1em !important;
     /*min-height: 76px;*/
-}
-@media only screen and (min-width: 768px) {
-    .component_option_thumbnails.columns-2 .thumbnail_description .title {
-        font-size: 1.25em !important;
-    }
 }
 .woocommerce ul.component_option_thumbnails_container li.component_option_thumbnail_container .thumbnail_description .price {
     color: #f5891f;
@@ -173,31 +173,25 @@
     border-radius: 8px;
 }
 .composite-summary-tabs-nav .tab-link {
-    display: inline-block;
+    display: block;
     padding: 0.75rem 1.25rem;
     text-decoration: none;
     border: none;
     background: none;
     font-size: 1rem;
     color: #555;
-    position: relative;
-    border-radius: 6px 6px 0 0;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
-    display: block;
     border-radius: 8px;
 }
 .composite-summary-tabs-nav .tab-link:hover {
     background-color: #f5891f;
     color: #fff;
-    border-radius: 8px;
 }
 .composite-summary-tabs-nav .tab-link.active {
     color: #fff;
     font-weight: 600;
     border-bottom: 2px solid transparent;
-    position: relative;
-    border-radius: 8px;
 }
 .composite-summary-tabs-nav .tab-link.visited:not(.active) {
     color: #000;
@@ -211,12 +205,10 @@
 .composite-summary-tabs-nav .tab-link.visited.active::before {
     color: #fff;
 }
-.composite-summary-tabs-nav .tab-link.visited::before, 
-.composite-summary-tabs-nav .tab-link.visited:not(.active) {
+.composite-summary-tabs-nav .tab-link.visited::before {
     content: "✓";
     color: #000;
     margin-right: 6px;
-    border-radius: 8px;
 }
 /*sticky cart button */
 .cart.composite_data {
