@@ -60,6 +60,8 @@
 }
 .component_option_thumbnail_container .thumbnail_description {
     padding: 20px 20px 0 20px !important;
+    display: flex;
+    flex: 1;
 }
 .component_option_thumbnail_select {
     display: block;
@@ -161,27 +163,30 @@
     margin-bottom: 1.5rem;
     padding: 5px;
     list-style: none;
-    background: #ededed;
+    /*background: #ededed;*/
     scroll-behavior: smooth;
     border-radius: 8px;
 }
 .composite-summary-tabs-nav li {
-    flex: 1 0 auto; /* Equal width tabs */
     text-align: center;
 }
-.composite-summary-tabs-nav li:has(.tab-link.active), 
+.composite-summary-tabs-nav li:has(.tab-link.active),
 .composite-summary-tabs-nav li:has(.tab-link:hover) {
     background-color: #f5891f;
     border-radius: 8px;
 }
 .composite-summary-tabs-nav .tab-link {
     display: block;
-    padding: 0.75rem 1.25rem;
+    padding: 0.5rem 1rem;
     text-decoration: none;
-    border: none;
-    background: none;
-    font-size: 1rem;
-    color: #555;
+    background-color: #f5f5f5;
+    color: #666;
+    font-size: 11px;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
     border-radius: 8px;
@@ -191,9 +196,9 @@
     color: #fff;
 }
 .composite-summary-tabs-nav .tab-link.active {
-    color: #fff;
-    font-weight: 600;
-    border-bottom: 2px solid transparent;
+    color: #f5891f;
+    border-bottom: solid 1.5px #f5891f;
+    background-color: black;
 }
 .composite-summary-tabs-nav .tab-link.visited:not(.active) {
     color: #000;
@@ -234,7 +239,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;  /* equal-height rows */
-    padding: 0;
+    padding: 1rem 0;
     list-style: none;
 }
 
@@ -319,11 +324,18 @@
     display: block;
 }
 
-/* Bottom content layout */
+/* Bottom content layout - price always at bottom */
 .component_option_thumbnails .thumbnail_bottom_content {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    height: 100%;
+    justify-content: space-between;
+}
+
+/* Ensure price stays at bottom */
+.component_option_thumbnails .thumbnail_price {
+    margin-top: auto;
 }
 
 /* Price styling in new layout */
