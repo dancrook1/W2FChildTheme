@@ -16,6 +16,7 @@
         // Also try after a short delay in case elements load later
         setTimeout(function() {
             initializeInfoButtons();
+            initializeSummaryAccordion();
         }, 1000);
     });
 
@@ -502,6 +503,106 @@
         );
 
         return $option;
+    }
+
+    /**
+     * Initialize summary widget accordion functionality
+     */
+    function initializeSummaryAccordion() {
+        $('.widget_composite_summary_elements').each(function() {
+            const $widget = $(this);
+
+            // Skip if already initialized
+            if ($widget.data('summary-accordion-initialized')) {
+                return;
+            }
+
+            // Mark as initialized
+            $widget.data('summary-accordion-initialized', true);
+
+            // Find the title element (could be h2, h3, or .widget-title)
+            let $title = $widget.find('.widget-title').first();
+            if ($title.length === 0) {
+                $title = $widget.find('h2, h3').first();
+            }
+
+            // Find all summary elements (the content to toggle)
+            const $summaryElements = $widget.find('.summary_element');
+
+            if ($title.length === 0 || $summaryElements.length === 0) {
+                return; // Required elements not found
+            }
+
+            // Create wrapper structure
+            if (!$title.parent().hasClass('summary_title_wrapper')) {
+                $title.wrap('<div class="summary_title_wrapper"></div>');
+            }
+
+            // Wrap summary elements if not already wrapped
+            if (!$summaryElements.parent().hasClass('summary_content')) {
+                $summaryElements.wrapAll('<div class="summary_content"></div>');
+            }
+
+            const $titleWrapper = $widget.find('.summary_title_wrapper');
+            const $summaryContent = $widget.find('.summary_content');
+
+            // Set up initial state (open by default)
+            $summaryContent.addClass('accordion-open');
+            $titleWrapper.addClass('active');
+
+            // Add ARIA attributes for accessibility
+            const widgetId = $widget.attr('id') || 'summary_widget_' + Math.random().toString(36).substr(2, 9);
+            const contentId = widgetId + '_content';
+
+            $widget.attr('id', widgetId);
+            $summaryContent.attr('id', contentId);
+            $titleWrapper.attr({
+                'role': 'button',
+                'aria-expanded': 'true',
+                'aria-controls': contentId,
+                'tabindex': '0'
+            });
+            $summaryContent.attr({
+                'role': 'region',
+                'aria-labelledby': widgetId + '_title'
+            });
+            $title.attr('id', widgetId + '_title');
+
+            // Click handler for accordion toggle
+            $titleWrapper.on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleSummaryAccordion($titleWrapper, $summaryContent);
+            });
+
+            // Keyboard accessibility
+            $titleWrapper.on('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleSummaryAccordion($titleWrapper, $summaryContent);
+                }
+            });
+        });
+    }
+
+    /**
+     * Toggle summary accordion state
+     */
+    function toggleSummaryAccordion($titleWrapper, $summaryContent) {
+        const isOpen = $summaryContent.hasClass('accordion-open');
+
+        if (isOpen) {
+            // Close accordion
+            $summaryContent.removeClass('accordion-open');
+            $titleWrapper.removeClass('active');
+            $titleWrapper.attr('aria-expanded', 'false');
+        } else {
+            // Open accordion
+            $summaryContent.addClass('accordion-open');
+            $titleWrapper.addClass('active');
+            $titleWrapper.attr('aria-expanded', 'true');
+        }
     }
 
     /**

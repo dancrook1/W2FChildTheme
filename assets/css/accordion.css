@@ -285,6 +285,58 @@ body .product-info-modal {
     }
 }
 
+/* Summary Widget Accordion Styles */
+.widget_composite_summary_elements .summary_title_wrapper {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border: 1px solid #ededed;
+    border-radius: 8px 8px 0 0;
+    transition: background-color 0.2s ease;
+}
+
+.widget_composite_summary_elements .summary_title_wrapper:hover {
+    background: #f0f0f0;
+}
+
+.widget_composite_summary_elements .summary_title_wrapper::after {
+    content: "\f140"; /* Dashicons arrow down */
+    font-family: dashicons;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.widget_composite_summary_elements .summary_title_wrapper.active::after {
+    transform: rotate(180deg);
+}
+
+.widget_composite_summary_elements .summary_content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #ededed;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.widget_composite_summary_elements .summary_content.accordion-open {
+    max-height: 1000px;
+}
+
+.widget_composite_summary_elements .summary_content .summary_element {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.widget_composite_summary_elements .summary_content .summary_element:last-child {
+    border-bottom: none;
+}
+
 /* Dropdown Info Button Styles - Next to component title */
 .component_title_wrapper .step_title_wrapper.component_title {
     display: flex;
