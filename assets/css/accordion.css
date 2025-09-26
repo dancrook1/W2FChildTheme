@@ -82,14 +82,24 @@
 }
 
 .composite_component.options-style-thumbnails .info-button .dashicons {
-    font-size: 14px;
-    width: 14px;
-    height: 14px;
+    font-size: 14px !important;
+    width: 14px !important;
+    height: 14px !important;
+    font-family: dashicons !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
 }
 
 /* Always show info icon, never change to tick/checkmark */
 .composite_component.options-style-thumbnails .info-button .dashicons:before {
     content: "\f348" !important; /* Force info icon */
+    font-family: dashicons !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    display: inline-block !important;
+    text-decoration: inherit !important;
+    vertical-align: top !important;
 }
 
 /* Override any selected states that might change the icon - comprehensive coverage */
@@ -100,6 +110,10 @@
 .composite_component.options-style-thumbnails .info-button .dashicons-yes-alt:before,
 .composite_component.options-style-thumbnails .selected .info-button .dashicons:before {
     content: "\f348" !important; /* Always keep info icon */
+    font-family: dashicons !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    display: inline-block !important;
 }
 
 /* Hide any checkmarks that might be added by WooCommerce or composite plugin */
@@ -263,9 +277,13 @@ body .product-info-modal {
     }
 
     .composite_component.options-style-thumbnails .info-button .dashicons {
-        font-size: 12px;
-        width: 12px;
-        height: 12px;
+        font-size: 12px !important;
+        width: 12px !important;
+        height: 12px !important;
+        font-family: dashicons !important;
+        line-height: 1 !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
     }
 
     .dropdown-info-helper {
