@@ -117,6 +117,11 @@ Template: hello-elementor
     list-style: none !important;
 }
 
+/* Hide "Available options:" label text */
+.component_section_title .select_label {
+    display: none !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .widget_composite_summary_elements.composite_summary .summary_element_wrapper_inner {
