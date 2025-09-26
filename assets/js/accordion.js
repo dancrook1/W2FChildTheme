@@ -533,10 +533,10 @@
             // Insert the button before the widget
             $widget.before($toggleButton);
 
-            // Wrap all widget content in a collapsible container
+            // Wrap all widget content in a collapsible container (closed by default)
             if (!$widget.find('.summary_content').length) {
                 const $allContent = $widget.children();
-                $allContent.wrapAll('<div class="summary_content accordion-open"></div>');
+                $allContent.wrapAll('<div class="summary_content"></div>');
             }
 
             const $summaryContent = $widget.find('.summary_content');
@@ -551,7 +551,7 @@
             $widget.attr('id', widgetId);
             $summaryContent.attr('id', contentId);
             $toggleBtn.attr({
-                'aria-expanded': 'true',
+                'aria-expanded': 'false',
                 'aria-controls': contentId,
                 'aria-label': 'Toggle your selections'
             });
@@ -592,9 +592,9 @@
                 }
             });
 
-            // Set initial state
-            $toggleButton.addClass('active');
-            $toggleArrow.text('▼');
+            // Set initial state (closed by default)
+            $toggleButton.removeClass('active');
+            $toggleArrow.text('▶');
         });
     }
 
