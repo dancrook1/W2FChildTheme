@@ -520,40 +520,29 @@
             // Mark as initialized
             $widget.data('summary-accordion-initialized', true);
 
-            // Find the title element (could be h2, h3, or .widget-title)
-            let $title = $widget.find('.widget-title').first();
-            if ($title.length === 0) {
-                $title = $widget.find('h2, h3').first();
-            }
-
             // Find all summary elements (the content to toggle)
             const $summaryElements = $widget.find('.summary_element');
 
-            if ($title.length === 0 || $summaryElements.length === 0) {
-                return; // Required elements not found
+            if ($summaryElements.length === 0) {
+                return; // No summary elements found
             }
 
-            // First, create wrapper for title if it doesn't exist
-            if (!$title.parent().hasClass('summary_title_wrapper')) {
-                $title.wrap('<div class="summary_title_wrapper"></div>');
-            }
+            // Create a "Your Selections" button above the widget
+            const $toggleButton = $('<div class="summary-accordion-toggle"><button type="button" class="summary-toggle-btn"><span class="toggle-text">Your Selections</span><span class="toggle-arrow">▼</span></button></div>');
 
-            const $titleWrapper = $widget.find('.summary_title_wrapper');
+            // Insert the button before the widget
+            $widget.before($toggleButton);
 
-            // Now wrap all content EXCEPT the title wrapper
+            // Wrap all widget content in a collapsible container
             if (!$widget.find('.summary_content').length) {
-                // Get all direct children except the title wrapper
-                const $allContent = $widget.children().not('.summary_title_wrapper');
-                if ($allContent.length > 0) {
-                    $allContent.wrapAll('<div class="summary_content"></div>');
-                }
+                const $allContent = $widget.children();
+                $allContent.wrapAll('<div class="summary_content accordion-open"></div>');
             }
 
             const $summaryContent = $widget.find('.summary_content');
-
-            // Set up initial state (open by default)
-            $summaryContent.addClass('accordion-open');
-            $titleWrapper.addClass('active');
+            const $toggleBtn = $toggleButton.find('.summary-toggle-btn');
+            const $toggleText = $toggleBtn.find('.toggle-text');
+            const $toggleArrow = $toggleBtn.find('.toggle-arrow');
 
             // Add ARIA attributes for accessibility
             const widgetId = $widget.attr('id') || 'summary_widget_' + Math.random().toString(36).substr(2, 9);
@@ -561,54 +550,54 @@
 
             $widget.attr('id', widgetId);
             $summaryContent.attr('id', contentId);
-            $titleWrapper.attr({
-                'role': 'button',
+            $toggleBtn.attr({
                 'aria-expanded': 'true',
                 'aria-controls': contentId,
-                'tabindex': '0'
+                'aria-label': 'Toggle your selections'
             });
             $summaryContent.attr({
                 'role': 'region',
-                'aria-labelledby': widgetId + '_title'
+                'aria-labelledby': widgetId + '_toggle'
             });
-            $title.attr('id', widgetId + '_title');
+            $toggleBtn.attr('id', widgetId + '_toggle');
 
             // Click handler for accordion toggle
-            $titleWrapper.on('click', function(e) {
+            $toggleBtn.on('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                toggleSummaryAccordion($titleWrapper, $summaryContent);
+
+                const isOpen = $summaryContent.hasClass('accordion-open');
+
+                if (isOpen) {
+                    // Close
+                    $summaryContent.removeClass('accordion-open');
+                    $toggleButton.removeClass('active');
+                    $toggleArrow.text('▶');
+                    $toggleBtn.attr('aria-expanded', 'false');
+                } else {
+                    // Open
+                    $summaryContent.addClass('accordion-open');
+                    $toggleButton.addClass('active');
+                    $toggleArrow.text('▼');
+                    $toggleBtn.attr('aria-expanded', 'true');
+                }
             });
 
             // Keyboard accessibility
-            $titleWrapper.on('keydown', function(e) {
+            $toggleBtn.on('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     e.stopPropagation();
-                    toggleSummaryAccordion($titleWrapper, $summaryContent);
+                    $toggleBtn.click();
                 }
             });
+
+            // Set initial state
+            $toggleButton.addClass('active');
+            $toggleArrow.text('▼');
         });
     }
 
-    /**
-     * Toggle summary accordion state
-     */
-    function toggleSummaryAccordion($titleWrapper, $summaryContent) {
-        const isOpen = $summaryContent.hasClass('accordion-open');
-
-        if (isOpen) {
-            // Close accordion
-            $summaryContent.removeClass('accordion-open');
-            $titleWrapper.removeClass('active');
-            $titleWrapper.attr('aria-expanded', 'false');
-        } else {
-            // Open accordion
-            $summaryContent.addClass('accordion-open');
-            $titleWrapper.addClass('active');
-            $titleWrapper.attr('aria-expanded', 'true');
-        }
-    }
 
     /**
      * Public API for external control
