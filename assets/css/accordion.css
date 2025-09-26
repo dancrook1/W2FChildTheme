@@ -291,30 +291,63 @@ body .product-info-modal {
 }
 
 .summary-accordion-toggle .summary-toggle-btn {
-    background: #f8f9fa;
-    border: 1px solid #ededed;
-    border-radius: 8px;
-    padding: 12px 20px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    transition: all 0.2s ease;
-    outline: none;
+    background: none !important;
+    border: 1px solid #ededed !important;
+    border-radius: 8px !important;
+    padding: 12px 20px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #666 !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
 }
 
 .summary-accordion-toggle .summary-toggle-btn:hover {
-    background: #f0f0f0;
-    border-color: #ddd;
+    color: #f5891f !important;
+    background-color: rgba(245, 137, 31, 0.1) !important;
+    border-color: #f5891f !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
 }
 
 .summary-accordion-toggle .summary-toggle-btn:focus {
-    outline: 2px solid #f5891f;
-    outline-offset: 2px;
+    outline: 2px solid #f5891f !important;
+    outline-offset: 1px !important;
+    background-color: rgba(245, 137, 31, 0.1) !important;
+    border-color: #f5891f !important;
+    color: #f5891f !important;
+    box-shadow: none !important;
+}
+
+.summary-accordion-toggle .summary-toggle-btn:active {
+    background-color: rgba(245, 137, 31, 0.2) !important;
+    color: #f5891f !important;
+    border-color: #f5891f !important;
+    box-shadow: none !important;
+}
+
+.summary-accordion-toggle .summary-toggle-btn:disabled {
+    color: #ccc !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    background: none !important;
+    border-color: #ededed !important;
+    box-shadow: none !important;
+}
+
+.summary-accordion-toggle .summary-toggle-btn:disabled:hover {
+    background-color: transparent !important;
+    color: #ccc !important;
+    border-color: #ededed !important;
+    box-shadow: none !important;
 }
 
 .summary-accordion-toggle .toggle-arrow {
