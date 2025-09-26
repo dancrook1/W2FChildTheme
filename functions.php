@@ -207,6 +207,7 @@ function enqueue_composite_accordion_scripts() {
                 filemtime( get_stylesheet_directory() . '/assets/js/accordion.js' ),
                 true
             );
+
         }
     }
 } 
@@ -219,7 +220,7 @@ function wc_cp_dynamic_options_per_page( $results_count, $component_id, $composi
 		$options_count = count( $component->get_options() );
 
 		if ( $options_count > 4 ) {
-			return 12; // Show 12 options if there are more than 4
+			return 10; // Show 12 options if there are more than 4
 		}
 	}
 

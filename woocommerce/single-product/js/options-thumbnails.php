@@ -33,10 +33,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</a>
 							</div>
 							<div class="thumbnail_description">
-								<h5 class="thumbnail_title title">{{{ data[ index ].option_display_title }}}</h5>
-								<# if ( data[ index ].option_price_html ) { #>
-									<span class="thumbnail_price price" style="font-size: 1.2em !important;">{{{ data[ index ].option_price_html }}}</span>
-								<# } #>
+								<div class="thumbnail_bottom_content">
+									<h5 class="thumbnail_title title">{{{ data[ index ].option_display_title }}}</h5>
+									<# if ( data[ index ].option_price_html ) { #>
+										<span class="thumbnail_price price">{{{ data[ index ].option_price_html }}}</span>
+									<# } #>
+								</div>
 							</div>
 							<div class="thumbnail_buttons">
 								<button class="button component_option_thumbnail_select" aria-label="{{ data[ index ].option_button_label }}">{{ data[ index ].option_button_text }}</button>

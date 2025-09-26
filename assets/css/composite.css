@@ -72,11 +72,13 @@
     min-height: auto !important;
     margin: 0;
 }
-.component_option_thumbnail {
-    border: 1px solid #ededed;
-    /* padding: 20px 20px; */
-    border-radius: 8px !important;
-   /* min-height: 544px; */
+/* btn-squared-v2 styling for thumbnails - visual effects only */
+.component_option_thumbnails .component_option_thumbnail {
+    position: relative !important;
+    border-radius: 10px !important;
+    box-shadow: 0 0 0 1px #00000005, 4px 4px 18px #00000026 !important;
+    transition: box-shadow .3s !important;
+    border: solid 1.5px #fff !important;
 }
 .small_width .component_option_thumbnail .image {
     width: 100% !important;
@@ -277,16 +279,20 @@
     margin-top: auto;
 }
 
-/* Highlight selected option with 1px border */
-.component_option_thumbnails .component_option_thumbnail.selected {
-    border: 1px solid #f5891f;
-    box-shadow: 0 0 5px rgba(245, 137, 31, 0.4);
+/* btn-squared-v2 hover effect */
+.component_option_thumbnails .component_option_thumbnail:hover,
+.component_option_thumbnails .component_option_thumbnail:focus {
+    box-shadow: 0 0 0 1px #00000005, 6px 6px 13px #00000029 !important;
+    transition: box-shadow .3s !important;
 }
 
-/* Hover glow for all option cards */
-.component_option_thumbnails .component_option_thumbnail:hover {
-    box-shadow: 0 0 10px rgba(245, 137, 31, 0.6);
-    border: 1px solid #f5891f;
+/* btn-squared-v2 selected/active state */
+.component_option_thumbnails .component_option_thumbnail.selected,
+.component_option_thumbnails .component_option_thumbnail:active {
+    color: #f5891f;
+    border-color: #f5891f !important;
+    box-shadow: 0 0 0 1px #f5891f inset, 0 0 0 1px #00000005, 4px 4px 18px #00000026 !important;
+    transition: box-shadow .3s !important;
 }
 
 /* Visually hide the Select button but keep it for screen readers */
@@ -302,19 +308,52 @@
     border: 0;
 }
 
-/* When selected, hide the price and show 'Selected' text */
-.component_option_thumbnails .component_option_thumbnail.selected .thumbnail_description .price {
-    visibility: hidden;
-    position: relative;
+/* Title styling with text wrapping */
+.component_option_thumbnails .thumbnail_title {
+    font-size: 0.85rem;
+    white-space: normal;
+    line-height: 1.2;
+    margin: 0 0 5px 0;
+    width: 100%;
+    overflow: visible;
+    display: block;
 }
-.component_option_thumbnails .component_option_thumbnail.selected .thumbnail_description .price::after {
-    content: "Selected";
-    position: absolute;
-    left: 0;
-    top: 0;
-    visibility: visible;
+
+/* Bottom content layout */
+.component_option_thumbnails .thumbnail_bottom_content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Price styling in new layout */
+.component_option_thumbnails .thumbnail_price {
+    font-size: 1em !important;
+    color: #f5891f;
+    font-weight: 600;
+}
+
+/* Info button styling */
+.component_option_thumbnails .info-button {
+    background: none;
+    border: none;
+    padding: 2px;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #666;
+    font-size: 1em;
+}
+
+/* Change info button to checkmark when thumbnail is selected */
+.component_option_thumbnails .component_option_thumbnail.selected .info-button .dashicons-info {
+    display: none;
+}
+
+.component_option_thumbnails .component_option_thumbnail.selected .info-button::after {
+    content: "✓";
     color: #f5891f;
     font-weight: bold;
+    font-size: 1.1em;
 }
 
 .composited_product_details_wrapper {
