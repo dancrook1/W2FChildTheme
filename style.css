@@ -1,0 +1,131 @@
+/*
+Theme Name: Hello Elementor Child
+Theme URI: https://wired2fire.co.uk/hello-elementor-child/
+Description: Child theme to add composite product template changes
+Author: TR and DC
+Author URI: https://wired2fire.co.uk
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+Template: hello-elementor
+
+/* ==========================================
+   WooCommerce Composite Products Customizations
+   ========================================== */
+
+/* CLEAN SOLUTION: Title and Selection on Same Row */
+
+/* Main container - force flexbox layout */
+.widget_composite_summary_elements.composite_summary .summary_element_wrapper_inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+    padding: 4px 8px !important;
+    margin: 0 !important;
+    min-height: auto !important;
+}
+
+/* Title styling - compact and inline */
+.widget_composite_summary_elements.composite_summary .summary_element_title {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    order: 1 !important;
+}
+
+.widget_composite_summary_elements.composite_summary .summary_element_title h3 {
+    display: inline-block !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #333 !important;
+    line-height: 1.2 !important;
+}
+
+/* Hide step numbers */
+.widget_composite_summary_elements.composite_summary .step_index {
+    display: none !important;
+}
+
+/* Add colon after title */
+.widget_composite_summary_elements.composite_summary .step_title:after {
+    content: ": " !important;
+    color: #333 !important;
+}
+
+/* Selection styling - takes remaining space */
+.widget_composite_summary_elements.composite_summary .summary_element_selection {
+    display: flex !important;
+    align-items: center !important;
+    flex: 1 !important;
+    margin: 0 !important;
+    order: 2 !important;
+    min-width: 0 !important;
+}
+
+.widget_composite_summary_elements.composite_summary .summary_element_selection .summary_element_content {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.widget_composite_summary_elements.composite_summary .summary_element_selection .content_product_title {
+    display: inline !important;
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hide unwanted elements completely */
+.widget_composite_summary_elements.composite_summary .summary_element_image,
+.widget_composite_summary_elements.composite_summary .summary_element_tap,
+.widget_composite_summary_elements.composite_summary .summary_element_button,
+.widget_composite_summary_elements.composite_summary .summary_element_availability_text,
+.widget_composite_summary_elements.composite_summary .summary_element_price {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Clean up list spacing */
+.widget_composite_summary_elements.composite_summary .summary_element {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #eee !important;
+    list-style: none !important;
+}
+
+.widget_composite_summary_elements.composite_summary .summary_element_wrapper_outer,
+.widget_composite_summary_elements.composite_summary .summary_element_wrapper.configured {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* List container */
+.widget_composite_summary_elements.composite_summary .summary_elements {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .widget_composite_summary_elements.composite_summary .summary_element_wrapper_inner {
+        gap: 4px !important;
+        padding: 2px 4px !important;
+    }
+
+    .widget_composite_summary_elements.composite_summary .summary_element_title h3,
+    .widget_composite_summary_elements.composite_summary .summary_element_selection .content_product_title {
+        font-size: 12px !important;
+    }
+}

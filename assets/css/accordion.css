@@ -1,0 +1,380 @@
+/* Accordion Styles for Composite Components with options-style-thumbnails */
+
+/* Hide product descriptions on main page - they will only show in popup modal */
+.composite_component.options-style-thumbnails .details.component_data {
+    display: none !important;
+}
+
+/* Accordion Header */
+.composite_component.options-style-thumbnails .component_title_wrapper {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+/* Accordion Icon */
+.composite_component.options-style-thumbnails .component_title_wrapper::after {
+    content: "\f140"; /* Dashicons arrow down */
+    font-family: dashicons;
+    font-size: 16px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.composite_component.options-style-thumbnails .component_title_wrapper.active::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Accordion Content */
+.composite_component.options-style-thumbnails .component_inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.composite_component.options-style-thumbnails .component_inner.accordion-open {
+    max-height: 2000px; /* Large enough value for most content */
+}
+
+/* Accessibility improvements */
+.composite_component.options-style-thumbnails .component_title_wrapper:focus {
+    outline: 2px solid #005a8b;
+    outline-offset: 2px;
+}
+
+/* Info Button Styles */
+.composite_component.options-style-thumbnails .thumbnail_title {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+.composite_component.options-style-thumbnails .info-button {
+    background: none;
+    border: none;
+    padding: 2px;
+    margin-left: 8px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.composite_component.options-style-thumbnails .info-button:hover {
+    color: #007cba;
+    background-color: rgba(0, 124, 186, 0.1);
+}
+
+.composite_component.options-style-thumbnails .info-button:focus {
+    outline: 2px solid #005a8b;
+    outline-offset: 1px;
+}
+
+.composite_component.options-style-thumbnails .info-button .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+/* Always show info icon, never change to tick/checkmark */
+.composite_component.options-style-thumbnails .info-button .dashicons:before {
+    content: "\f348" !important; /* Force info icon */
+}
+
+/* Override any selected states that might change the icon - comprehensive coverage */
+.composite_component.options-style-thumbnails .component_option_thumbnail.selected .info-button .dashicons:before,
+.composite_component.options-style-thumbnails .component_option_thumbnail .info-button .dashicons:before,
+.composite_component.options-style-thumbnails .info-button .dashicons-info:before,
+.composite_component.options-style-thumbnails .info-button .dashicons-yes:before,
+.composite_component.options-style-thumbnails .info-button .dashicons-yes-alt:before,
+.composite_component.options-style-thumbnails .selected .info-button .dashicons:before {
+    content: "\f348" !important; /* Always keep info icon */
+}
+
+/* Hide any checkmarks that might be added by WooCommerce or composite plugin */
+.composite_component.options-style-thumbnails .component_option_thumbnail .dashicons-yes,
+.composite_component.options-style-thumbnails .component_option_thumbnail .dashicons-yes-alt,
+.composite_component.options-style-thumbnails .component_option_thumbnail .selected-indicator {
+    display: none !important;
+}
+
+/* If the checkmark is being added as a separate element, hide it */
+.composite_component.options-style-thumbnails .component_option_thumbnail.selected:after,
+.composite_component.options-style-thumbnails .component_option_thumbnail.selected:before {
+    display: none !important;
+}
+
+/* Modal Styles */
+.product-info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.product-info-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.product-info-modal .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.product-info-modal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.product-info-modal.show .modal-content {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.product-info-modal .modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+}
+
+.product-info-modal .modal-header h3 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333;
+}
+
+.product-info-modal .modal-close {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #666;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.product-info-modal .modal-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.product-info-modal .modal-close:focus {
+    outline: 2px solid #005a8b;
+    outline-offset: 1px;
+}
+
+.product-info-modal .modal-body {
+    padding: 20px;
+    max-height: calc(80vh - 80px);
+    overflow-y: auto;
+}
+
+.product-info-modal .modal-body p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.product-info-modal .modal-body ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.product-info-modal .modal-body li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.product-info-modal .modal-body .component_wrap {
+    display: none; /* Hide quantity controls in modal */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .composite_component.options-style-thumbnails .component_title_wrapper::after {
+        right: 15px;
+        font-size: 14px;
+    }
+
+    .product-info-modal .modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .product-info-modal .modal-header,
+    .product-info-modal .modal-body {
+        padding: 15px;
+    }
+
+    .product-info-modal .modal-header h3 {
+        font-size: 1.2em;
+    }
+
+    .composite_component.options-style-thumbnails .info-button {
+        width: 18px;
+        height: 18px;
+        margin-left: 6px;
+    }
+
+    .composite_component.options-style-thumbnails .info-button .dashicons {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Dropdown Info Button Styles - Next to component title */
+.component_title_wrapper .step_title_wrapper.component_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown-info-helper {
+    flex-shrink: 0;
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+.dropdown-main-info-button {
+    background: none !important;
+    border: none !important;
+    padding: 4px !important;
+    cursor: pointer !important;
+    color: #666 !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    font-weight: normal !important;
+    font-size: inherit !important;
+    line-height: 1 !important;
+}
+
+.dropdown-main-info-button:hover {
+    color: #f5891f !important;
+    background-color: rgba(245, 137, 31, 0.1) !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+.dropdown-main-info-button:focus {
+    outline: 2px solid #f5891f !important;
+    outline-offset: 1px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: rgba(245, 137, 31, 0.1) !important;
+}
+
+.dropdown-main-info-button:active {
+    background-color: rgba(245, 137, 31, 0.2) !important;
+    color: #f5891f !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown-main-info-button:disabled {
+    color: #ccc !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown-main-info-button:disabled:hover {
+    background-color: transparent !important;
+    color: #ccc !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown-main-info-button .dashicons {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 1 !important;
+}
+
+/* Ensure icon always stays as info icon - override any WooCommerce changes */
+.dropdown-main-info-button .dashicons:before,
+.dropdown-main-info-button .dashicons-info:before {
+    content: "\f348" !important; /* Force info icon */
+    font-family: dashicons !important;
+    font-weight: normal !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .dropdown-info-helper {
+        margin-left: 6px;
+    }
+
+    .dropdown-main-info-button {
+        width: 20px;
+        height: 20px;
+        padding: 2px;
+    }
+
+    .dropdown-main-info-button .dashicons {
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+    }
+}
+
+.component_content {
+    display: none;
+}
+
+.component_content.active {
+    display: block;
+}

@@ -1,0 +1,345 @@
+.composite-tab-prev, .composite-tab-next {
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 24px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.tab-prev-label, .tab-next-label {
+    font-size: 16px;
+}
+.composite-tabs-bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 0 1em;
+    gap: 1em;
+}
+
+.composite-tabs-bottom-nav button {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.composite-tabs-bottom-nav button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media only screen and (min-width: 768px) {
+    .component_option_thumbnails.columns-2 ul.component_option_thumbnails_container li.component_option_thumbnail_container {
+        margin: 0 1.5% 1.618em 0 !important;
+    }
+}
+.thumbnail_description {
+    text-align: left;
+}
+.thumbnail_buttons {
+    padding: 20px !important;
+}
+.button.component_option_thumbnail_select {
+    width: 100% !important;
+}
+.component_option_thumbnails.columns-5 .component_option_thumbnail .thumbnail_description .title {
+    font-size: 1em !important;
+    /*min-height: 76px;*/
+}
+@media only screen and (min-width: 768px) {
+    .component_option_thumbnails.columns-2 .thumbnail_description .title {
+        font-size: 1.25em !important;
+    }
+}
+.woocommerce ul.component_option_thumbnails_container li.component_option_thumbnail_container .thumbnail_description .price {
+    color: #f5891f;
+    font-weight: 600;
+}
+.component_option_thumbnail_container .thumbnail_description {
+    padding: 20px 20px 0 20px !important;
+}
+.component_option_thumbnail_select {
+    display: block;
+    width: 100% !important;
+}
+.composite_form:not(.paged) .component .component_inner {
+    padding-bottom: 0 !important;
+}
+.component_option_thumbnails.columns-5 .component_option_thumbnail {
+    min-height: auto !important;
+    margin: 0;
+}
+.component_option_thumbnail {
+    border: 1px solid #ededed;
+    /* padding: 20px 20px; */
+    border-radius: 8px !important;
+   /* min-height: 544px; */
+}
+.small_width .component_option_thumbnail .image {
+    width: 100% !important;
+    padding: 0;
+}
+@media only screen and (max-width: 768px) {
+    .component_option_thumbnail {
+        min-height: auto !important;
+        margin: 0 !important;
+    }
+}
+.component_option_thumbnail button, 
+.woocommerce div.product form.composite_form .component_option_thumbnail .button {
+    padding: .618em 1em;
+}
+
+/* pagination */
+.component_pagination {
+    display: flex;
+    align-items: end;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+.page-numbers.component_pagination_element.prev {
+    position: absolute;
+    left: 0;
+}
+.page-numbers.component_pagination_element.number {
+    display: none;
+}
+.index.woocommerce-result-count {
+    font-size: 16px;
+    margin: 0 !important;
+}
+.woocommerce nav.woocommerce-pagination ul {
+    display: flex;
+    gap: 1px;
+    border: none;
+}
+.woocommerce nav.woocommerce-pagination ul li {
+    border-right: none;
+}
+.page-numbers.component_pagination_element.prev, 
+.page-numbers.component_pagination_element.next {
+    background: #f5891f;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 2px 10px 5px !important;
+    color: #fff;
+}
+
+.component-tab-wrapper {
+    border: 1px solid #ededed;
+    border-radius: 8px;
+    padding: 20px 30px;
+    margin-bottom: 20px;
+}
+@media only screen and (min-width: 1140px) {
+    .component-tab-wrapper {
+        min-width: 1136px;
+    }
+}
+/* .component_content {
+    display: none;
+} */
+.composite-tab-group {
+    display: none;
+}
+.composite-tab-group.active {
+    display: block;
+}
+.composite-summary-tabs-nav .tab-link.active {
+    font-weight: bold;
+}
+.composite-summary-tabs-nav {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 1px;
+    margin-bottom: 1.5rem;
+    padding: 5px;
+    list-style: none;
+    background: #ededed;
+    scroll-behavior: smooth;
+    border-radius: 8px;
+}
+.composite-summary-tabs-nav li {
+    flex: 1 0 auto; /* Equal width tabs */
+    text-align: center;
+}
+.composite-summary-tabs-nav li:has(.tab-link.active), 
+.composite-summary-tabs-nav li:has(.tab-link:hover) {
+    background-color: #f5891f;
+    border-radius: 8px;
+}
+.composite-summary-tabs-nav .tab-link {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    color: #555;
+    position: relative;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    display: block;
+    border-radius: 8px;
+}
+.composite-summary-tabs-nav .tab-link:hover {
+    background-color: #f5891f;
+    color: #fff;
+    border-radius: 8px;
+}
+.composite-summary-tabs-nav .tab-link.active {
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    position: relative;
+    border-radius: 8px;
+}
+.composite-summary-tabs-nav .tab-link.visited:not(.active) {
+    color: #000;
+}
+.composite-summary-tabs-nav .tab-link.visited:not(.active):hover {
+    color: #fff;
+}
+.composite-summary-tabs-nav .tab-link.visited:not(.active):hover::before {
+    color: #fff;
+}
+.composite-summary-tabs-nav .tab-link.visited.active::before {
+    color: #fff;
+}
+.composite-summary-tabs-nav .tab-link.visited::before, 
+.composite-summary-tabs-nav .tab-link.visited:not(.active) {
+    content: "✓";
+    color: #000;
+    margin-right: 6px;
+    border-radius: 8px;
+}
+/*sticky cart button */
+.cart.composite_data {
+    position: sticky;
+    bottom: 0;
+}
+.composite_wrap {
+    display: none;
+    border: 1.5px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+
+/* =========================================================
+   Equal heights + responsive columns for option cards
+   ========================================================= */
+.component_option_thumbnails .component_option_thumbnails_container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;  /* equal-height rows */
+    padding: 0;
+    list-style: none;
+}
+
+/* Desktop: 6 columns */
+@media (min-width: 1025px) {
+    .component_option_thumbnails .component_option_thumbnail_container {
+        flex: 0 0 calc(100% / 6);
+        box-sizing: border-box;
+    }
+}
+
+/* Tablet: 3 columns */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .component_option_thumbnails .component_option_thumbnail_container {
+        flex: 0 0 calc(100% / 3);
+        box-sizing: border-box;
+    }
+}
+
+/* Mobile: 2 columns */
+@media (max-width: 767px) {
+    .component_option_thumbnails .component_option_thumbnail_container {
+        flex: 0 0 calc(100% / 2);
+        box-sizing: border-box;
+    }
+}
+
+.component_option_thumbnails .component_option_thumbnail_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.component_option_thumbnails .component_option_thumbnail {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+}
+
+.component_option_thumbnails .thumbnail_buttons {
+    margin-top: auto;
+}
+
+/* Highlight selected option with 1px border */
+.component_option_thumbnails .component_option_thumbnail.selected {
+    border: 1px solid #f5891f;
+    box-shadow: 0 0 5px rgba(245, 137, 31, 0.4);
+}
+
+/* Hover glow for all option cards */
+.component_option_thumbnails .component_option_thumbnail:hover {
+    box-shadow: 0 0 10px rgba(245, 137, 31, 0.6);
+    border: 1px solid #f5891f;
+}
+
+/* Visually hide the Select button but keep it for screen readers */
+.component_option_thumbnails .thumbnail_buttons {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* When selected, hide the price and show 'Selected' text */
+.component_option_thumbnails .component_option_thumbnail.selected .thumbnail_description .price {
+    visibility: hidden;
+    position: relative;
+}
+.component_option_thumbnails .component_option_thumbnail.selected .thumbnail_description .price::after {
+    content: "Selected";
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: visible;
+    color: #f5891f;
+    font-weight: bold;
+}
+
+.composited_product_details_wrapper {
+	padding-bottom: 1.618em;
+
+}
+.composite_button .quantity {
+    display: none;
+    margin-right: 10px;
+}
+
+.widget_composite_summary .widget_composite_summary_availability, .widget_composite_summary .widget_composite_summary_price {
+    text-align: left;
+    padding: 10px 0 0 10px;
+}
+
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price,.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product span.price {
+    color: black;
+    font-size: 1.25em
+}
