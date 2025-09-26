@@ -36,7 +36,14 @@
         // Initialize info buttons for dropdown-only components (after thumbnail buttons are done)
         setTimeout(function() {
             initializeDropdownInfoButtons();
-        }, 200);
+        }, 1000);
+
+        // Also initialize when Select2 is ready
+        $(document).on('select2:open', function(e) {
+            setTimeout(function() {
+                initializeDropdownInfoButtons();
+            }, 100);
+        });
 
         accordionComponents.each(function() {
             const $component = $(this);
@@ -351,7 +358,7 @@
         console.log('Initializing dropdown info buttons...');
 
         // Target Select2 dropdowns in composite components that DON'T have thumbnails
-        $('.composite_component .component_options_select.wc-composite-select2').each(function() {
+        $('.composite_component .component_options_select').each(function() {
             const $select = $(this);
             const $component = $select.closest('.composite_component');
             const componentData = $component.find('.component_options').data('options_data');
@@ -359,7 +366,7 @@
             console.log('Checking component:', $component.attr('class'));
             console.log('Has thumbnails class:', $component.hasClass('options-style-thumbnails'));
             console.log('Has thumbnail elements:', $component.find('.component_option_thumbnails').length > 0);
-            console.log('Has existing info buttons:', $component.find('.info-button').length);
+            console.log('Has existing dropdown info buttons:', $component.find('.dropdown-info-helper').length);
 
             // Skip if this component has thumbnails (thumbnail info buttons already handle this)
             if ($component.hasClass('options-style-thumbnails')) {
@@ -373,9 +380,9 @@
                 return;
             }
 
-            // Skip if there are already any info buttons
-            if ($component.find('.info-button, .dropdown-info-helper').length > 0) {
-                console.log('Component already has info buttons, skipping dropdown info button');
+            // Skip if there are already dropdown info buttons
+            if ($component.find('.dropdown-info-helper').length > 0) {
+                console.log('Component already has dropdown info buttons, skipping');
                 return;
             }
 
