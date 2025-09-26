@@ -533,17 +533,22 @@
                 return; // Required elements not found
             }
 
-            // Create wrapper structure
+            // First, create wrapper for title if it doesn't exist
             if (!$title.parent().hasClass('summary_title_wrapper')) {
                 $title.wrap('<div class="summary_title_wrapper"></div>');
             }
 
-            // Wrap summary elements if not already wrapped
-            if (!$summaryElements.parent().hasClass('summary_content')) {
-                $summaryElements.wrapAll('<div class="summary_content"></div>');
+            const $titleWrapper = $widget.find('.summary_title_wrapper');
+
+            // Now wrap all content EXCEPT the title wrapper
+            if (!$widget.find('.summary_content').length) {
+                // Get all direct children except the title wrapper
+                const $allContent = $widget.children().not('.summary_title_wrapper');
+                if ($allContent.length > 0) {
+                    $allContent.wrapAll('<div class="summary_content"></div>');
+                }
             }
 
-            const $titleWrapper = $widget.find('.summary_title_wrapper');
             const $summaryContent = $widget.find('.summary_content');
 
             // Set up initial state (open by default)

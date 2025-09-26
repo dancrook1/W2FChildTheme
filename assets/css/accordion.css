@@ -286,6 +286,12 @@ body .product-info-modal {
 }
 
 /* Summary Widget Accordion Styles */
+.widget_composite_summary_elements {
+    border: 1px solid #ededed;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .widget_composite_summary_elements .summary_title_wrapper {
     cursor: pointer;
     position: relative;
@@ -295,9 +301,9 @@ body .product-info-modal {
     justify-content: space-between;
     padding: 15px 20px;
     background: #f8f9fa;
-    border: 1px solid #ededed;
-    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #ededed;
     transition: background-color 0.2s ease;
+    z-index: 1;
 }
 
 .widget_composite_summary_elements .summary_title_wrapper:hover {
@@ -320,9 +326,6 @@ body .product-info-modal {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #ededed;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
 }
 
 .widget_composite_summary_elements .summary_content.accordion-open {
